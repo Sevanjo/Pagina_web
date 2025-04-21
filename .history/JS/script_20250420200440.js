@@ -1,0 +1,124 @@
+// Función para manejar el envío del formulario
+document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    // Validación simple
+    if (name && email && message) {
+        alert(`Gracias ${name}, tu mensaje ha sido enviado. Te responderemos a ${email} pronto.`);
+        this.reset();
+    } else {
+        alert('Por favor completa todos los campos.');
+    }
+});
+
+// Cambiar el color del encabezado al hacer scroll
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.style.backgroundColor = '#222';
+    } else {
+        header.style.backgroundColor = '#35424a';
+    }
+});
+
+// Resaltar el enlace de la página actual
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = location.pathname.split('/').pop();
+    const links = document.querySelectorAll('nav a');
+    
+    links.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.style.fontWeight = 'bold';
+            link.style.color = '#ff9900';
+        }
+    });
+});
+
+// Validación del formulario
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const loader = document.querySelector('.loader');
+    
+    // Ocultar loader cuando la página cargue
+    if(loader) {
+        loader.classList.add('loader-hidden');
+    }
+
+    if(contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Resetear mensajes de error
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            let isValid = true;
+            
+            // Validar nombre
+            const name = document.getElementById('name');
+            if(name.value.trim() === '') {
+                document.getElementById('name-error').textContent = 'Por favor ingresa tu nombre';
+                document.getElementById('name-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validar email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(email.value.trim() === '') {
+                document.getElementById('email-error').textContent = 'Por favor ingresa tu email';
+                document.getElementById('email-error').style.display = 'block';
+                isValid = false;
+            } else if(!emailRegex.test(email.value)) {
+                document.getElementById('email-error').textContent = 'Por favor ingresa un email válido';
+                document.getElementById('email-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validar mensaje
+            const message = document.getElementById('message');
+            if(message.value.trim() === '') {
+                document.getElementById('message-error').textContent = 'Por favor ingresa tu mensaje';
+                document.getElementById('message-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if(isValid) {
+                const submitBtn = contactForm.querySelector('.submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                
+                setTimeout(function() {
+                    
+                    document.getElementById('form-success').style.display = 'flex';
+                    contactForm.reset();
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Enviar Mensaje</span><i class="fas fa-paper-plane"></i>';
+                    
+                    setTimeout(function() {
+                        document.getElementById('form-success').style.display = 'none';
+                    }, 5000);
+                }, 1500);
+            }
+        });
+        
+        // Efecto de carga para los elementos del formulario
+        const formGroups = document.querySelectorAll('.form-group');
+        formGroups.forEach((group, index) => {
+            group.style.opacity = '0';
+            group.style.transform = 'translateY(20px)';
+            group.style.transition = 'all 0.5s ease ' + (index * 0.1) + 's';
+            
+            setTimeout(function() {
+                group.style.opacity = '1';
+                group.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    }
+});
