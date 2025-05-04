@@ -1,12 +1,10 @@
-// Función para manejar el envío del formulario
 document.getElementById('contactForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
     
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
-    
-    // Validación simple
+  
     if (name && email && message) {
         alert(`Gracias ${name}, tu mensaje ha sido enviado. Te responderemos a ${email} pronto.`);
         this.reset();
@@ -15,7 +13,6 @@ document.getElementById('contactForm')?.addEventListener('submit', function(e) {
     }
 });
 
-// Cambiar el color del encabezado al hacer scroll
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {
@@ -25,7 +22,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Resaltar el enlace de la página actual
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = location.pathname.split('/').pop();
     const links = document.querySelectorAll('nav a');
@@ -38,12 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Validación del formulario
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     const loader = document.querySelector('.loader');
     
-    // Ocultar loader cuando la página cargue
     if(loader) {
         loader.classList.add('loader-hidden');
     }
@@ -52,14 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Resetear mensajes de error
             document.querySelectorAll('.error-message').forEach(el => {
                 el.style.display = 'none';
             });
             
             let isValid = true;
-            
-            // Validar nombre
+           
             const name = document.getElementById('name');
             if(name.value.trim() === '') {
                 document.getElementById('name-error').textContent = 'Por favor ingresa tu nombre';
@@ -67,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 isValid = false;
             }
             
-            // Validar email
             const email = document.getElementById('email');
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if(email.value.trim() === '') {
@@ -80,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 isValid = false;
             }
             
-            // Validar mensaje
             const message = document.getElementById('message');
             if(message.value.trim() === '') {
                 document.getElementById('message-error').textContent = 'Por favor ingresa tu mensaje';
@@ -108,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Efecto de carga para los elementos del formulario
         const formGroups = document.querySelectorAll('.form-group');
         formGroups.forEach((group, index) => {
             group.style.opacity = '0';
@@ -121,4 +110,60 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         });
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const indicators = document.querySelectorAll('.slider-indicators span');
+    let currentIndex = 0;
+    let autoSlideInterval;
+   
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+       
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === index);
+        });
+       
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+  
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
+   
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+    }
+    
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    indicators.forEach((indicator, i) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = i;
+            showSlide(currentIndex);
+        });
+    });
+   
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 5000); 
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    startAutoSlide();
+    slider.parentElement.addEventListener('mouseenter', stopAutoSlide);
+    slider.parentElement.addEventListener('mouseleave', startAutoSlide);
+
+    showSlide(currentIndex);
 });

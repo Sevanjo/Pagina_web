@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Sitio Web - Inicio</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   <!-- Nuevo: Agregamos Font Awesome para íconos del carrusel -->
+</head>
+<body>
+    <header>
+        <h1>TuRestaurante de Mar</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Carrusel -->
+        <section class="slider-container">
+            <div class="slider">
+                <div class="slide active">
+                    <img src="../IMAGENES/imagen_1.jpg" alt="Imagen 1 del slider">
+                    <div class="slide-caption">
+                        <h3>Bienvenido a nuestro restaurante</h3>
+                        <p>Descubre nuestros servicios de alta calidad</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="../IMAGENES/imagen_2.jpg" alt="Imagen 2 del slider">
+                    <div class="slide-caption">
+                        <h3>Comidas inolvidables</h3>
+                        <p>No sotros no ofrecemos comida, ofrecemos una experiencia</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="../IMAGENES/imagen_3.jpg" alt="Imagen 3 del slider">
+                    <div class="slide-caption">
+                        <h3>Servicios en diferentes ciudades</h3>
+                        <p>descubre donde puedes encontrarnos</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Controles del slider -->
+            <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            <!-- Indicadores/puntos -->
+            <div class="slider-indicators"></div>
+        </section>
+
+        <section>
+            <h2>Bienvenido a mi sitio web</h2>
+            <p>Este es un sitio web de ejemplo creado con HTML, CSS y JavaScript.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Un sitio web de prueba y demostración</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
