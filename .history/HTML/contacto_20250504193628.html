@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Restaurante de Mar - Reservas y ubicación en Colombia</title>
+    <meta name="description" content="Dirección, horarios y formulario de reservas. ¡Visítanos en Calle Ejemplo 123 o llámanos al +1 234 567 890!">
+    <link rel="preload" href="../CSS/styles.css" as="style">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Restaurante de Mar",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Calle Ejemplo 123",
+            "addressLocality": "Ciudad",
+            "addressCountry": "Colombia"
+        },
+        "telephone": "+1234567890",
+        "openingHours": "Mo-Fr 08:00-22:00, Sa-Su 24:00"
+    }
+    </script>
+</head>
+<body>
+    <div class="loader" aria-hidden="true"></div>
+    <header>
+        <h1>Restaurante de Mar</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="contacto.html" aria-current="page">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="contact-section" aria-labelledby="contacto-heading">
+            <h2 id="contacto-heading" class="sr-only">Formulario de Contacto</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <p itemprop="address">Calle Ejemplo 123, Ciudad, Colombia</p>
+                    </div>
+                </div>
+                <form id="contactForm" class="contact-form" netlify>
+                    <input type="text" name="honeypot" style="display: none;" tabindex="-1">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-error">
+                        <label for="name">Nombre Completo</label>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Restaurante de Mar - 2025</p>
+        <div class="footer-links">
+            <a href="politica-privacidad.html">Política de Privacidad</a>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+</body>
+</html>
